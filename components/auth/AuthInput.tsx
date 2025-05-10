@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, TextInputProps, View } from "react-native";
+import { StyleSheet, TextInput, TextInputProps, View } from "react-native";
 
 interface AuthInputProps extends TextInputProps {
   error?: string;
@@ -18,11 +18,9 @@ export function AuthInput({
   ...rest
 }: AuthInputProps) {
   return (
-    <View className="mb-4 w-full">
+    <View style={styles.container}>
       <TextInput
-        className={`bg-white/10 rounded-lg px-4 py-4 text-white text-base border ${
-          error ? "border-red-500" : "border-white/20"
-        }`}
+        style={[styles.input, error && styles.inputError]}
         placeholder={placeholder}
         placeholderTextColor="rgba(255, 255, 255, 0.5)"
         value={value}
@@ -38,3 +36,23 @@ export function AuthInput({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 16,
+    width: "100%",
+  },
+  input: {
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    color: "#ffffff",
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.2)",
+  },
+  inputError: {
+    borderColor: "#ff6b6b",
+  },
+});

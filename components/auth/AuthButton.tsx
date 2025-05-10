@@ -1,5 +1,10 @@
 import React from "react";
-import { Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -36,9 +41,9 @@ export function AuthButton({
   });
 
   return (
-    <Animated.View className={`w-full my-2 ${animatedStyle}`}>
+    <Animated.View style={[styles.container, animatedStyle]}>
       <TouchableOpacity
-        className={`bg-purple-600 rounded-lg py-4 items-center justify-center ${isDisabled ? "bg-purple-600/50" : ""}`}
+        style={[styles.button, isDisabled && styles.buttonDisabled]}
         onPress={onPress}
         onPressIn={onPressIn}
         onPressOut={onPressOut}
@@ -48,11 +53,32 @@ export function AuthButton({
         {isLoading ? (
           <ActivityIndicator color="#ffffff" />
         ) : (
-          <Text className="text-white text-lg font-bold tracking-wider">
-            {title}
-          </Text>
+          <Text style={styles.buttonText}>{title}</Text>
         )}
       </TouchableOpacity>
     </Animated.View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    marginVertical: 8,
+  },
+  button: {
+    backgroundColor: "#a34fde",
+    borderRadius: 8,
+    paddingVertical: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonDisabled: {
+    backgroundColor: "rgba(163, 79, 222, 0.5)",
+  },
+  buttonText: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "700",
+    letterSpacing: 1,
+  },
+});

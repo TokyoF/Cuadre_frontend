@@ -9,6 +9,7 @@ export default function AuthLayout() {
         <Stack.Screen name="signup" />
         <Stack.Screen name="two-factor" />
         <Stack.Screen name="biometric" />
+        <Stack.Screen name="welcome" />
       </Stack>
     </AuthProvider>
   );
